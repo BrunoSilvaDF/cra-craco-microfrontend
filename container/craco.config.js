@@ -1,6 +1,5 @@
-// const cracoModuleFederation = require('craco-module-federation')
 const ModuleFederation = require('webpack/lib/container/ModuleFederationPlugin')
-const packageJson = require('./package.json')
+const deps = require('./package.json').dependencies
 
 module.exports = {
   devServer: {
@@ -26,7 +25,17 @@ module.exports = {
             app1: 'app1@http://localhost:8081/remoteEntry.js',
             app2: 'app2@http://localhost:8082/remoteEntry.js',
           },
-          shared: packageJson.dependencies,
+          shared: {
+            ...deps,
+            react: {
+              singleton: true,
+              requiredVersion: deps['react'],
+            },
+            'react-dom': {
+              singleton: true,
+              requiredVersion: deps['react-dom'],
+            },
+          },
         }),
       ],
     },
