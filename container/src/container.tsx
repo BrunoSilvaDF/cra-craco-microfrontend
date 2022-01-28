@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react'
 import SafeComponent from './safe-component'
 
-const App2 = lazy(() => import('./app2'))
-const App1 = lazy(() => import('./app1'))
+const Header = lazy(() => import('./remotes/header'))
+const App2 = lazy(() => import('./remotes/app2'))
+const App1 = lazy(() => import('./remotes/app1'))
 
 const Container = () => {
   return (
@@ -12,14 +13,19 @@ const Container = () => {
         border: '1px solid #cecece',
       }}
     >
+      <SafeComponent>
+        <Suspense fallback={() => <div>loading header</div>}>
+          <Header />
+        </Suspense>
+      </SafeComponent>
       <h1>Container application</h1>
       <SafeComponent>
-        <Suspense fallback={() => <div>carregando app1</div>}>
+        <Suspense fallback={() => <div>loading app1</div>}>
           <App1 />
         </Suspense>
       </SafeComponent>
       <SafeComponent>
-        <Suspense fallback={() => <div>carregando app2</div>}>
+        <Suspense fallback={() => <div>loading app2</div>}>
           <App2 />
         </Suspense>
       </SafeComponent>
