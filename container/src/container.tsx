@@ -2,8 +2,11 @@ import React, { lazy, Suspense } from 'react'
 import SafeComponent from './safe-component'
 
 const Header = lazy(() => import('./remotes/header'))
+// const Header = lazy(() => import('header/Header'))
 const App2 = lazy(() => import('./remotes/app2'))
+// const App2 = lazy(() => import('app2/App2'))
 const App1 = lazy(() => import('./remotes/app1'))
+// const App1 = lazy(() => import('app1/App1'))
 
 const Container = () => {
   return (
